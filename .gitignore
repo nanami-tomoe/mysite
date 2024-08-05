@@ -1,9 +1,6 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python,django,macos
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,django,macos
 
-# README에 사용하는 이미지
-README_image/
-
 ### Django ###
 *.log
 *.pot
