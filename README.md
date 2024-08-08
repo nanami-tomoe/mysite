@@ -179,19 +179,87 @@ python3 manage.py startapp polls
 
 ## 장고의 다양한 모델 필드 활용하기
 
-- 공식 문서에서 다양한 모델 필드 타입들 알아보기
+### 공식 문서에서 다양한 모델 필드 타입들 알아보기
 
-    - [Model field reference | Django documentation](https://docs.djangoproject.com/en/5.0/ref/models/fields/)
+- [Model field reference | Django documentation](https://docs.djangoproject.com/en/5.0/ref/models/fields/)
 
 - 많이 쓰이는 field들
-  - `BooleanField`
-  - `CharField`
-    - string 타입
-  - `DateField`
-    - 날짜만 저장. 시간은 x
-  - `DateTimeField`
-    - 날짜와 시간 모두
-  - `FloatField`
-  - `JSONField`
-  - `TextField`
-    - 캐릭터보다 더 긴 텍스트들 저장
+    - `BooleanField`
+    - `CharField`
+        - string 타입
+    - `DateField`
+        - 날짜만 저장. 시간은 x
+    - `DateTimeField`
+        - 날짜와 시간 모두
+    - `FloatField`
+    - `JSONField`
+    - `TextField`
+        - 캐릭터보다 더 긴 텍스트들 저장
+
+### 실행된 migration 확인하는 법
+
+- 사용한 데이터베이스: `sqlite3` (기본 제공 DB)
+- 폴더에서 확인 가능
+
+![alt text](README_images/image-19.png)
+
+- DB 터미널 입장
+
+```
+sqlite3 db.sqlite3
+```
+
+![](README_images/2024-08-08-23-57-17.png)
+
+- DB table 확인
+
+```
+.tables
+```
+
+![](README_images/2024-08-08-23-57-52.png)
+
+- 테이블 상세보기
+
+```
+SELECT * FROM django_migrations;
+```
+
+![](README_images/2024-08-09-00-00-47.png)
+
+- 테이블 구조 확인하기
+
+```
+.schema polls_question
+```
+
+![](README_images/2024-08-09-00-01-08.png)
+
+- sqlite3 터미널 종료: `control` + `D`
+
+### 새로 만든 필드를 삭제하는 법
+
+- 마지막으로 만든 migration을 삭제하고 이전 migration으로 돌리기
+1. 새로 만든 0002 migration을 지우고 0001 migration 으로 돌린다.
+
+![](README_images/2024-08-09-00-01-22.png)
+
+```
+python3 manage.py migrate polls 0001
+```
+
+![](README_images/2024-08-09-00-01-35.png)
+
+2. vscode에서 새로 만든 migration(0002)을 지우고 새로 만든 필드도 지운다.
+
+![](README_images/2024-08-09-00-01-49.png)
+
+![](README_images/2024-08-09-00-02-05.png)
+
+3. 다시 migrate를 돌리고 확인한다.
+
+```
+python3 manage.py migrate
+```
+
+![](README_images/2024-08-09-00-02-17.png)
